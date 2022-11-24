@@ -1,8 +1,8 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Reservation {
     /// unique id for the reservation, if put into ReservationRequest, id should be empty
-    #[prost(int64, tag = "1")]
-    pub id: i64,
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
     /// user id for the reservation
     #[prost(string, tag = "2")]
     pub user_id: ::prost::alloc::string::String,
@@ -102,9 +102,6 @@ pub struct ReservationQuery {
     /// end time for the reservation query, if 0, use Infinity for end time
     #[prost(message, optional, tag = "5")]
     pub end: ::core::option::Option<::prost_types::Timestamp>,
-    /// sort direction
-    #[prost(bool, tag = "6")]
-    pub desc: bool,
 }
 /// To query reservations, send a QueryRequest
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -169,7 +166,9 @@ pub struct ListenResponse {
     #[prost(message, optional, tag = "2")]
     pub reservation: ::core::option::Option<Reservation>,
 }
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[derive(
+    sqlx::Type, Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+)]
 #[repr(i32)]
 pub enum ReservationStatus {
     Unknown = 0,

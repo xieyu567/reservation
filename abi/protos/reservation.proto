@@ -19,7 +19,7 @@ enum ReservationUpdateType {
 
 message Reservation {
   // unique id for the reservation, if put into ReservationRequest, id should be empty
-  int64 id = 1;
+  string id = 1;
   // user id for the reservation
   string user_id = 2;
   // reservation status, used for differentating purpose
@@ -100,8 +100,6 @@ message ReservationQuery {
   google.protobuf.Timestamp start = 4;
   // end time for the reservation query, if 0, use Infinity for end time
   google.protobuf.Timestamp end = 5;
-  // sort direction
-  bool desc = 6;
 }
 
 // To query reservations, send a QueryRequest
